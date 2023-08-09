@@ -97,6 +97,10 @@ body {
   }
 }
 
+.navbar{
+  position: relative;
+  z-index: 10;  
+}
 .navbar-expand {
   position: relative;
   z-index: 10;
