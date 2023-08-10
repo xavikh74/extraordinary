@@ -3,6 +3,8 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import Nft1 from '/templates/images/nft1.png';
 import Nft2 from '/templates/images/nft2.png';
 import eth from '/templates/images/eth.svg';
+import circle from '/templates/images/circle.svg';
+import bgStack from '/templates/images/stack-blur.png';
 
 const Stacking = () => {
 
@@ -10,7 +12,7 @@ const Stacking = () => {
 
     return (
         <>
-            <section className='stacking'>
+            <section className='stacking' style={{backgroundImage:`url('${bgStack}')`, backgroundSize:'50%',backgroundPosition:'bottom',backgroundRepeat:'no-repeat'}}>
                 <Container>
                     <div className='d-flex justify-content-lg-between justify-content-center'>
                         <div className='nft-box4 text-center px-0'>
@@ -34,7 +36,7 @@ const Stacking = () => {
                                     <label htmlFor="">You pay</label>
                                     <div className='nft-input'>
                                         <input type="text" placeholder='0.00' />
-                                        <div className='nft-st'>
+                                        <div className='nft-st px-3'>
                                             <img src={eth} className='img-fluid' alt="image" />
                                             <span className='me-1'>ETH</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 16 16" fill="none">
@@ -54,7 +56,10 @@ const Stacking = () => {
                                         ~ $0.00
                                     </div>
                                 </div>
-                                <div className='nft-input-group mt-3 pt-3 text-start'>
+                                <div className='text-center my-2'>
+                                    <img src={circle} className='img-fluid' alt="image" />
+                                </div>
+                                <div className='nft-input-group mt-1 text-start'>
                                     <label htmlFor="">You get</label>
                                     <div className='nft-input'>
                                         <input type="text" placeholder='0.00' />
@@ -71,13 +76,14 @@ const Stacking = () => {
                                 </div>
                                 <div className='mt-4'>
                                     <h6 className='text-white d-flex align-items-center justify-content-between mt-2'>
-                                        <span>Chart</span>
+                                        <span className='poppins fw-bold' style={{fontSize:15}}
+                                        >Chart</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
                                             <path d="M1 1L6 6L1 11" stroke="#727288" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>
                                     </h6>
                                     <h6 className='text-white d-flex align-items-center justify-content-between mt-2'>
-                                        <span>Share & Earn</span>
+                                        <span className='poppins fw-bold' style={{fontSize:15}}>Share & Earn</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
                                             <path d="M1 1L6 6L1 11" stroke="#727288" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
                                         </svg>

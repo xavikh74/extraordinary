@@ -12,7 +12,7 @@ const Header = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse gap-5" id="basic-navbar-nav">
-            <ul className="navbar-nav ms-auto gap-5 clash-medium">
+            <ul className="navbar-nav ms-auto gap-5">
               <a className="nav-link active" aria-current="page" href="#">Marketplace</a>
               <a className="nav-link" href="#">Collection</a>
               <a className="nav-link" href="#">Community</a>

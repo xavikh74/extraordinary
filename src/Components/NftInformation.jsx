@@ -1,21 +1,22 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
-import cardImg1 from '/templates/images/vector1.png'
-import cardImg2 from '/templates/images/vector2.png'
-import cardImg3 from '/templates/images/vector3.png'
-import cardImg4 from '/templates/images/vector4.png'
-import cardImg5 from '/templates/images/vector5.png'
-import cardImg6 from '/templates/images/vector6.png'
-import cardImg7 from '/templates/images/vector7.png'
-import cardImg8 from '/templates/images/vector8.png'
-import cardImg9 from '/templates/images/vector9.png'
-import cardImg10 from '/templates/images/vector10.png'
-import cardImg11 from '/templates/images/vector11.png'
-import cardImg12 from '/templates/images/vector12.png'
+import cardImg1 from '/templates/images/vector1.svg'
+import cardImg2 from '/templates/images/vector2.svg'
+import cardImg3 from '/templates/images/vector3.svg'
+import cardImg4 from '/templates/images/vector4.svg'
+import cardImg5 from '/templates/images/vector5.svg'
+import cardImg6 from '/templates/images/vector6.svg'
+import cardImg7 from '/templates/images/vector7.svg'
+import cardImg8 from '/templates/images/vector8.svg'
+import cardImg9 from '/templates/images/vector9.svg'
+import cardImg10 from '/templates/images/vector10.svg'
+import cardImg11 from '/templates/images/vector11.svg'
+import cardImg12 from '/templates/images/vector12.svg'
 import nftShadow from '/templates/images/shadow-card.png'
+import nftShadow2 from '/templates/images/shadow2.png'
 
-const NftInformation = () => {
+const NftInformation = () => {  
     return (
         <>
             <section className='nft-section'>
@@ -23,9 +24,9 @@ const NftInformation = () => {
                     <div className='row justify-content-between align-align-items-center'>
                         <div className='text-start w-mxc'>
                             <h2><span className='text-white mb-0'>NFT</span> <span className='text-red'>Information</span></h2>
-                            <p className='text-white'>Checkout Top Rated Creators on the NFT Marketplace</p>
+                            <p className='text-white fs-4' style={{fontWeight:200}}>Checkout Top Rated Creators On The NFT Marketplace</p>
                         </div>
-                        <div className='w-mxc'>
+                        <div className='w-mxc d-flex align-items-center'>
                             <Button className='btn theme-btn' style={{ width: 140, fontSize: '16px' }}>Explore More</Button>
                         </div>
                         <div>
@@ -180,6 +181,7 @@ const NftInformation = () => {
                     </div>
                 </Container>
                 <img src={nftShadow} className='nft-card-shadow' alt="image" />
+                <img src={nftShadow2} className='nft-card-shadow2' alt="image" />
             </section>
         </>
     )
