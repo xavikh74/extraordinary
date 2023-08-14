@@ -12,14 +12,15 @@ const Stacking = () => {
 
     return (
         <>
-            <section className='stacking' style={{backgroundImage:`url('${bgStack}')`, backgroundSize:'50%',backgroundPosition:'bottom',backgroundRepeat:'no-repeat'}}>
+            <section className='stacking' style={{ backgroundImage: `url('${bgStack}')`, backgroundSize: '50%', backgroundPosition: 'bottom', backgroundRepeat: 'no-repeat' }}>
                 <Container>
                     <div className='d-flex justify-content-lg-between justify-content-center'>
                         <div className='nft-box4 text-center px-0'>
                             <img src={Nft1} className='img-fluid' alt="image" />
                         </div>
                         <div className='nft-box-form'>
-                            <h2><span className='text-white'>Staking</span> <span className='text-red'>Applications</span></h2>
+                            <h2 style={{fontSize:'33px'}}><span className='text-white'>Purchase VoldemortTrumpRobotnik
+                                -10Neko ETHEREUM on </span> <span className='text-red'>Uniswap</span></h2>
                             <div className='nft-form-box'>
                                 <div className='toggle-form d-flex align-items-center justify-content-between'>
                                     <div className='toggle-button'>
@@ -40,9 +41,9 @@ const Stacking = () => {
                                             <img src={eth} className='img-fluid' alt="image" />
                                             <span className='me-1'>ETH</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 16 16" fill="none">
-                                                <g clip-path="url(#clip0_11_2602)">
+                                                <g clipPath="url(#clip0_11_2602)">
                                                     <path d="M8.45762 1.11465L9.55362 0.554654C10.0585 0.296876 10.6701 0.503987 10.9341 1.02399L11.5056 2.14843C11.6567 2.44532 11.9305 2.65243 12.2478 2.7111L13.4487 2.93065C14.0034 3.03288 14.3803 3.57421 14.3021 4.15732L14.1305 5.41688C14.108 5.58018 14.1219 5.74643 14.171 5.90377C14.2202 6.06111 14.3035 6.20566 14.415 6.3271L15.2621 7.24265C15.6532 7.66399 15.6532 8.3351 15.2621 8.75732L14.4141 9.67288C14.3028 9.79439 14.2196 9.93897 14.1706 10.0963C14.1216 10.2536 14.1079 10.4199 14.1305 10.5831L14.3021 11.8435C14.3803 12.4249 14.0034 12.9671 13.4487 13.0693L12.2478 13.2889C11.9305 13.3475 11.6567 13.5555 11.5056 13.8515L10.9341 14.976C10.6701 15.4951 10.0594 15.7022 9.55362 15.4444L8.45851 14.8853C8.31659 14.8125 8.15937 14.7745 7.99985 14.7745C7.84032 14.7745 7.6831 14.8125 7.54118 14.8853L6.44607 15.4453C5.94118 15.7031 5.32962 15.496 5.06562 14.976L4.49407 13.8507C4.42199 13.7061 4.31751 13.5801 4.18877 13.4825C4.06004 13.3849 3.91052 13.3183 3.75185 13.288L2.55096 13.0684C1.99629 12.9662 1.6194 12.4249 1.69762 11.8418L1.86918 10.5822C1.89167 10.4189 1.87784 10.2527 1.82867 10.0953C1.7795 9.93797 1.69621 9.79342 1.58473 9.67199L0.737624 8.75554C0.548926 8.54845 0.444336 8.27838 0.444336 7.99821C0.444336 7.71804 0.548926 7.44797 0.737624 7.24088L1.58562 6.32532C1.80873 6.08443 1.91451 5.74754 1.86918 5.41599L1.69762 4.15643C1.61851 3.5751 1.99629 3.03199 2.55096 2.93154L3.75185 2.7111C4.06829 2.65243 4.34207 2.44443 4.49318 2.14843L5.06473 1.02399C5.32873 0.504876 5.9394 0.297765 6.44518 0.555542L7.54118 1.11465C7.68287 1.1872 7.83977 1.22504 7.99896 1.22504C8.15814 1.22504 8.31504 1.1872 8.45673 1.11465H8.45762Z" fill="#DA0116" />
-                                                    <path d="M5.42139 7.80184L7.3485 9.68539L10.6969 5.88184" stroke="white" stroke-width="1.03022" stroke-linecap="round" stroke-linejoin="round" />
+                                                    <path d="M5.42139 7.80184L7.3485 9.68539L10.6969 5.88184" stroke="white" strokeWidth="1.03022" strokeLinecap="round" strokeLinejoin="round" />
                                                 </g>
                                                 <defs>
                                                     <clipPath id="clip0_11_2602">
@@ -76,16 +77,16 @@ const Stacking = () => {
                                 </div>
                                 <div className='mt-4'>
                                     <h6 className='text-white d-flex align-items-center justify-content-between mt-2'>
-                                        <span className='poppins fw-bold' style={{fontSize:15}}
+                                        <span className='poppins fw-bold' style={{ fontSize: 15 }}
                                         >Chart</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
-                                            <path d="M1 1L6 6L1 11" stroke="#727288" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M1 1L6 6L1 11" stroke="#727288" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </h6>
                                     <h6 className='text-white d-flex align-items-center justify-content-between mt-2'>
-                                        <span className='poppins fw-bold' style={{fontSize:15}}>Share & Earn</span>
+                                        <span className='poppins fw-bold' style={{ fontSize: 15 }}>Share & Earn</span>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="7" height="12" viewBox="0 0 7 12" fill="none">
-                                            <path d="M1 1L6 6L1 11" stroke="#727288" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M1 1L6 6L1 11" stroke="#727288" strokeWidth="1.33333" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                     </h6>
                                 </div>

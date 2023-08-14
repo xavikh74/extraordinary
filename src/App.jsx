@@ -5,6 +5,7 @@ import Footer from './Components/layout/Footer';
 import Banner from './Components/Banner';
 import NftInformation from './Components/NftInformation';
 import Stacking from './Components/Stacking';
+import Table from './Components/Table';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
     <>
       <Header/>
       <Banner/>
+      <Table/>
       <NftInformation/>
       <Stacking/>
       <Footer/>

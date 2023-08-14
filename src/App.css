@@ -10,6 +10,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
 /* SPACE MANO FONT */
 
+/* INTER FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+/* INTER FONT */
 
 @font-face {
   font-family: 'clash-regular';
@@ -106,10 +109,12 @@ body {
   position: relative;
   z-index: 10;
 }
-.navbar-nav a{
+
+.navbar-nav a {
   font-family: 'Poppins', sans-serif;
   font-weight: 600;
 }
+
 .text-grey {
   color: #C8C8C8 !important;
 }
@@ -129,10 +134,13 @@ body {
 h2 {
   font-size: 50px;
 }
-.connect-btn button{
-  padding-top: 12px !important;
-  padding-bottom: 12px !important;
+
+.connect-btn button {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  width: 150px;
 }
+
 .theme-btn {
   background: #DA0116;
   border-color: #DA0116;
@@ -283,6 +291,83 @@ h2 {
   text-transform: capitalize;
 }
 
+.counter-div {
+  border-radius: 60px;
+  border: 1px solid #FFF;
+  opacity: 0.9;
+  display: flex;
+  align-items: center;
+  color: #FFF;
+  width: 140px;
+  justify-content: space-between;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+}
+
+.counter-div .dsc,
+.inc {
+  text-align: center;
+  width: 35px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .4s all;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.dsc {
+  border-right: 1px solid #FFF;
+}
+
+.inc {
+  border-left: 1px solid #FFF;
+}
+
+.dsc:hover {
+  color: #09080A;
+  background-color: #FFF;
+}
+
+.inc:hover {
+  color: #09080A;
+  background-color: #FFF;
+}
+
+.table-section {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  z-index: 10;
+}
+
+.bitcoin-table {
+  border-radius: 10px;
+  border: 1px solid #585858;
+  background: rgba(36, 36, 36, 0.50);
+}
+
+.bit-table tr th {
+  color: #FFF;
+  text-align: end;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  padding-bottom: 35px;
+}
+
+.bit-table tr td {
+  color: #FFF;
+  text-align: end;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  padding-bottom: 35px;
+}
+
 /* Banner End */
 
 /* NFT Start */
@@ -345,6 +430,7 @@ section.nft-section {
   z-index: -1;
   width: 62%;
 }
+
 .nft-card-shadow2 {
   position: absolute;
   top: -4%;
@@ -360,7 +446,12 @@ section.stacking {
   position: relative;
   z-index: 10;
 }
-
+@media(min-width:1366px){
+  .nft-form-box {
+    width: 80%;
+    margin: auto !important;
+  }
+}
 .nft-form-box {
   border-radius: 10px;
   border: 1px solid #585858;
@@ -368,6 +459,11 @@ section.stacking {
   margin-top: 12% !important;
   margin: 20px;
   padding: 20px;
+
+}
+
+.nft-box-form {
+  width: 40%;
 }
 
 .nft-box4 {
@@ -535,7 +631,7 @@ section.footer-section {
 
 /* Responsive Screens */
 @media(max-width:1527.27px) {
-  .banner-img{
+  .banner-img {
     width: 105%;
   }
 
@@ -547,6 +643,22 @@ section.footer-section {
 }
 
 @media(max-width:1400px) {
+  .nft-box-form h2 {
+    font-size: 27px !important;
+  }
+
+  .bit-table tr td {
+    font-size: 10px;
+  }
+
+  .bit-table tr td {
+    font-size: 10px;
+  }
+
+  .bit-table tr td img {
+    width: 25px !important;
+  }
+
   .banner-star {
     top: 19%;
     right: 2%;
@@ -594,14 +706,16 @@ section.footer-section {
 }
 
 @media(max-width:991px) {
-  section.stacking{
-    background-size: cover !important;
+  section.stacking {
+    background-size: 70% !important;
   }
-  .toggle-button button{
+
+  .toggle-button button {
     font-size: small;
     width: 80px;
   }
-  .banner-img{
+
+  .banner-img {
     display: none;
   }
 
@@ -650,6 +764,30 @@ section.footer-section {
     right: -5%;
     width: 41%;
   }
+
+  .connect-btn button {
+    width: 100%;
+  }
+
+  .bitcoin-table {
+    width: 1400px;
+  }
+
+  .table-section .container {
+    overflow-x: scroll;
+  }
+
+  .nft-box4 {
+    display: none;
+  }
+
+  .nft-box-form {
+    width: 60%;
+  }
+
+  .nft-box-form h2 {
+    font-size: 27px;
+  }
 }
 
 @media(max-width:766px) {
@@ -658,8 +796,11 @@ section.footer-section {
     max-width: 93%;
   }
 
-  .nft-box4 {
-    display: none;
+  .nft-form-box{
+    margin: 0px;
+  }
+  .nft-box-form {
+    width: 100%;
   }
 
   .nft-box {
@@ -732,10 +873,12 @@ section.footer-section {
   .hr-break {
     margin: 2.5rem 0px;
   }
-  .nft-content{
+
+  .nft-content {
     margin-top: 0px;
   }
-  .nft-section .w-mxc p{
+
+  .nft-section .w-mxc p {
     font-size: large !important;
   }
 }
