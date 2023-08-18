@@ -46,3 +46,219 @@
 </body>
 
 </html>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Staking Interface for ETHEREUM</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.6.4/ethers.umd.min.js"></script>
+<style>
+body {
+  background-image: url('https://pbs.twimg.com/media/F1osAn2WcAIdKkI?format=jpg&name=medium');
+  color: white;
+}
+
+button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.claim-container {
+  display: flex;
+  align-items: left;
+}
+
+.claim-container h2 {
+  margin-right: 20px;
+}
+
+ @media screen and (max-width: 768px) {
+   .container {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+   body {
+      text-align: center;
+      justify-content: center;
+    }
+   button {
+      text-align: center; 
+      margin: auto;  
+      display: block; 
+   }
+   p, h1, h2, h3 {
+   text-align: center;
+   }  
+}
+
+</style>
+</head>
+<body>
+</style>
+<div class="container">
+<h1 style="color: darkblue;">STAKE YOUR PRECIOUS VTR-10N 💀</h1>
+<button id="connectBtn" onclick="connectWallet()">Connect Wallet</button>
+<h2>Stake ETHEREUM</h2>
+<h2 id="availableTokens">Available to Stake: 0.0 ETHEREUM</h2>
+<input id="stakeAmount" min="0" placeholder="Amount to Stake" type="number"/>
+<button onclick="setMaxStakeAmount()">Max</button>
+<button onclick="stakeTokens()">Stake ETHEREUM</button>
+<h2>Unstake ETHEREUM</h2>
+<h2 id="availableTokens2">Available to Unstake: 0.0 ETHEREUM</h2>
+<input id="withdrawAmount" placeholder="Amount to Withdraw" type="number"/>
+<button onclick="setMaxWithdrawAmount()">Max</button>
+<button onclick="withdrawTokens()">Withdraw</button>
+<h2>Claim Schizocurrency</h2>
+<div class="claim-container">
+<h2 id="availableSchizo">You can claim: 0.0 Schizocurrency</h2>
+<button onclick="claimRewards()">Claim</button>
+</div>
+<h1>VIBRATE_HARDER_ERECT_TOGETHER</h1>
+</div>
+<script>
+        let provider;
+	let signer;
+        let stakingContract;
+        const contractAddress = '0xA37D2aF849aE7B0D426Fc0578f3B3468289ebb03';
+        const ABI = [{"inputs":[{"internalType":"address","name":"_nativeTokenWrapper","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"string","name":"prevURI","type":"string"},{"indexed":false,"internalType":"string","name":"newURI","type":"string"}],"name":"ContractURIUpdated","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint8","name":"version","type":"uint8"}],"name":"Initialized","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"RewardTokensDepositedByAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"RewardTokensWithdrawnByAdmin","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"staker","type":"address"},{"indexed":false,"internalType":"uint256","name":"rewardAmount","type":"uint256"}],"name":"RewardsClaimed","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"previousAdminRole","type":"bytes32"},{"indexed":true,"internalType":"bytes32","name":"newAdminRole","type":"bytes32"}],"name":"RoleAdminChanged","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleGranted","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"bytes32","name":"role","type":"bytes32"},{"indexed":true,"internalType":"address","name":"account","type":"address"},{"indexed":true,"internalType":"address","name":"sender","type":"address"}],"name":"RoleRevoked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"staker","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"TokensStaked","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"staker","type":"address"},{"indexed":false,"internalType":"uint256","name":"amount","type":"uint256"}],"name":"TokensWithdrawn","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"oldAmount","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"newAmount","type":"uint256"}],"name":"UpdatedMinStakeAmount","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"oldNumerator","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"newNumerator","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"oldDenominator","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"newDenominator","type":"uint256"}],"name":"UpdatedRewardRatio","type":"event"},{"anonymous":false,"inputs":[{"indexed":false,"internalType":"uint256","name":"oldTimeUnit","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"newTimeUnit","type":"uint256"}],"name":"UpdatedTimeUnit","type":"event"},{"inputs":[],"name":"DEFAULT_ADMIN_ROLE","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"claimRewards","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"contractType","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"pure","type":"function"},{"inputs":[],"name":"contractURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"contractVersion","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"pure","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"depositRewardTokens","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"getRewardRatio","outputs":[{"internalType":"uint256","name":"_numerator","type":"uint256"},{"internalType":"uint256","name":"_denominator","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getRewardTokenBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleAdmin","outputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"getRoleMember","outputs":[{"internalType":"address","name":"member","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"}],"name":"getRoleMemberCount","outputs":[{"internalType":"uint256","name":"count","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_staker","type":"address"}],"name":"getStakeInfo","outputs":[{"internalType":"uint256","name":"_tokensStaked","type":"uint256"},{"internalType":"uint256","name":"_rewards","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getTimeUnit","outputs":[{"internalType":"uint256","name":"_timeUnit","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"grantRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRole","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"hasRoleWithSwitch","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_defaultAdmin","type":"address"},{"internalType":"string","name":"_contractURI","type":"string"},{"internalType":"address[]","name":"_trustedForwarders","type":"address[]"},{"internalType":"address","name":"_rewardToken","type":"address"},{"internalType":"address","name":"_stakingToken","type":"address"},{"internalType":"uint256","name":"_timeUnit","type":"uint256"},{"internalType":"uint256","name":"_rewardRatioNumerator","type":"uint256"},{"internalType":"uint256","name":"_rewardRatioDenominator","type":"uint256"}],"name":"initialize","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"forwarder","type":"address"}],"name":"isTrustedForwarder","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes[]","name":"data","type":"bytes[]"}],"name":"multicall","outputs":[{"internalType":"bytes[]","name":"results","type":"bytes[]"}],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"renounceRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"role","type":"bytes32"},{"internalType":"address","name":"account","type":"address"}],"name":"revokeRole","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"rewardToken","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"rewardTokenDecimals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"_uri","type":"string"}],"name":"setContractURI","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_numerator","type":"uint256"},{"internalType":"uint256","name":"_denominator","type":"uint256"}],"name":"setRewardRatio","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_timeUnit","type":"uint256"}],"name":"setTimeUnit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"stake","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"stakers","outputs":[{"internalType":"uint256","name":"amountStaked","type":"uint256"},{"internalType":"uint256","name":"timeOfLastUpdate","type":"uint256"},{"internalType":"uint256","name":"unclaimedRewards","type":"uint256"},{"internalType":"uint256","name":"conditionIdOflastUpdate","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"stakersArray","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"stakingToken","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"stakingTokenBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"stakingTokenDecimals","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"_amount","type":"uint256"}],"name":"withdrawRewardTokens","outputs":[],"stateMutability":"nonpayable","type":"function"},{"stateMutability":"payable","type":"receive"}];
+        let account;
+        const stakingTokenAddress = '0xC32dB1D3282e872d98f6437D3BCFa57801CA6d5c';
+	const ERC20_ABI = [
+  {
+    "constant": true,
+    "inputs": [{"name": "_owner", "type": "address"}],
+    "name": "balanceOf",
+    "outputs": [{"name": "balance", "type": "uint256"}],
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [{"name": "_owner", "type": "address"}, {"name": "_spender", "type": "address"}],
+    "name": "allowance",
+    "outputs": [{"name": "remaining", "type": "uint256"}],
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [{"name": "_spender", "type": "address"}, {"name": "_value", "type": "uint256"}],
+    "name": "approve",
+    "outputs": [],
+    "type": "function"
+  }
+];
+
+
+
+
+
+async function connectWallet() {
+  const btn = document.getElementById('connectBtn');
+
+  if (btn.innerText.startsWith('Connected')) {
+  btn.innerText = "Connect Wallet";
+  provider = null;
+  signer = null;
+  account = null;
+  stakingContract = null;
+  document.getElementById('availableTokens').innerText = "Available to Stake: 0.0 ETHEREUM";
+  document.getElementById('availableTokens2').innerText = "Available to unstake: 0.0 ETHEREUM";
+  document.getElementById('availableSchizo').innerText = "You can claim: 0.0 Schizocurrency";
+  return;
+  }
+  if (typeof window.ethereum !== 'undefined') {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    signer = provider.getSigner();
+
+    try {
+      await provider.send('eth_requestAccounts', []);
+      const accounts = await provider.listAccounts();
+      account = accounts[0];
+      stakingContract = new ethers.Contract(contractAddress, ABI, signer);
+
+      const ensName = await provider.lookupAddress(account);
+      const displayName = ensName || account;
+      btn.innerText = `Connected: ${displayName}`;
+    } catch (error) {
+      console.error(error);
+      alert('Failed to connect wallet');
+    }
+  } else {
+    alert('Ethereum provider not found. Please install MetaMask or another web3-enabled browser extension.');
+  }
+
+  await updateStakingBalance();
+}
+
+
+
+async function stakeTokens() {
+  const stakeAmount = ethers.utils.parseEther(document.getElementById('stakeAmount').value);
+  const stakingTokenContract = new ethers.Contract(stakingTokenAddress, ERC20_ABI, signer);
+  const allowance = await stakingTokenContract.allowance(account, contractAddress);
+
+  if (BigInt(allowance) < BigInt(stakeAmount)) {
+    await stakingTokenContract.approve(contractAddress, stakeAmount);
+  }
+
+  await stakingContract.stake(stakeAmount);
+  await updateStakingBalance();
+}
+
+async function withdrawTokens() {
+  const amount = document.getElementById('withdrawAmount').value;
+  const weiAmount = ethers.utils.parseEther(amount);
+  await stakingContract.withdraw(weiAmount)
+  await updateStakingBalance();
+}
+
+async function claimRewards() {
+  await stakingContract.claimRewards();
+  await updateStakingBalance();
+}
+async function updateStakingBalance() {
+  const tokenContract = new ethers.Contract(stakingTokenAddress, ERC20_ABI, signer);
+  const balance = await tokenContract.balanceOf(account);
+  document.getElementById('availableTokens').innerText = `Available to Stake: ${ethers.utils.formatEther(balance)} ETHEREUM`;
+
+  const stakeInfo = await stakingContract.getStakeInfo(account);
+  const tokensStaked = ethers.utils.formatEther(stakeInfo._tokensStaked);
+  document.getElementById('availableTokens2').innerText = `Available to Unstake: ${tokensStaked} ETHEREUM`;
+
+  const info = await stakingContract.getStakeInfo(account);
+  document.getElementById('availableSchizo').innerText = `You can claim: ${ethers.utils.formatEther(info._rewards)} Schizocurrency`;
+}
+
+function setMaxStakeAmount() {
+  const availableBalanceText = document.getElementById('availableTokens').innerText;
+  const availableBalance = availableBalanceText.match(/\d+(\.\d+)?/)[0];
+  document.getElementById('stakeAmount').value = availableBalance;
+}
+
+async function setMaxWithdrawAmount() {
+  try {
+    const stakeInfo = await stakingContract.getStakeInfo(account);
+    const tokensStaked = ethers.utils.formatEther(stakeInfo._tokensStaked);
+    document.getElementById('withdrawAmount').value = tokensStaked;
+  } catch (error) {
+    console.error('Error fetching stake info:', error);
+  }
+}
+/*Debugging
+console.log("Staking Token Address:", stakingTokenAddress);
+console.log("Contract Address:", contractAddress);
+console.log("Account:", account);*/
+    </script>
+</body>
+</html>
